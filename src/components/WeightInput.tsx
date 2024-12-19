@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Scale, Dumbbell } from 'lucide-react';
+import React, { useState } from "react";
+import { Scale, Dumbbell } from "lucide-react";
 
 interface WeightInputProps {
   weight: number;
-  unit: 'kg' | 'lbs';
+  unit: "kg" | "lbs";
   onWeightChange: (weight: number) => void;
-  onUnitChange: (unit: 'kg' | 'lbs') => void;
+  onUnitChange: (unit: "kg" | "lbs") => void;
 }
 
 export function WeightInput({
@@ -19,8 +19,8 @@ export function WeightInput({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     // Allow empty input temporarily
-    if (value === '') {
-      setInputValue('');
+    if (value === "") {
+      setInputValue("");
       return;
     }
 
@@ -32,50 +32,50 @@ export function WeightInput({
   };
 
   const handleBlur = () => {
-    if (inputValue === '') {
-      setInputValue('45'); // Default to min value if empty
+    if (inputValue === "") {
+      setInputValue("45"); // Default to min value if empty
       onWeightChange(45);
     }
   };
 
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white p-6 rounded-xl shadow-2xl z-10">
+    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white p-6 shadow-[12px_12px_0px_0px_black] z-10 border-2 border-black">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <Dumbbell className="w-6 h-6 text-blue-600" />
+          {/* <Dumbbell className="w-6 h-6 text-blue-600" /> */}
           <h2 className="text-lg font-semibold text-gray-800">
-            Weight Calculator
+            Barbell Visualizer
           </h2>
         </div>
 
         <div className="flex items-center gap-4">
-          <Scale className="w-5 h-5 text-gray-600" />
+          {/* <Scale className="w-5 h-5 text-gray-600" /> */}
           <input
             type="number"
             min="45"
             value={inputValue}
             onChange={handleInputChange}
             onBlur={handleBlur}
-            className="w-24 px-3 py-2 border rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-24 px-3 py-2 border border-slate-900 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <div className="flex rounded-lg overflow-hidden border">
+          <div className="flex border border-2 border-black overflow-hidden border">
             <button
               className={`px-4 py-2 transition-colors ${
-                unit === 'kg'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                unit === "kg"
+                  ? "bg-black text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
               }`}
-              onClick={() => onUnitChange('kg')}
+              onClick={() => onUnitChange("kg")}
             >
               KG
             </button>
             <button
               className={`px-4 py-2 transition-colors ${
-                unit === 'lbs'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                unit === "lbs"
+                  ? "bg-black text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
               }`}
-              onClick={() => onUnitChange('lbs')}
+              onClick={() => onUnitChange("lbs")}
             >
               LBS
             </button>
