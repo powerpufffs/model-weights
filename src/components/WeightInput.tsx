@@ -87,7 +87,7 @@ export function WeightInput({
             built with{" "}
           </p>
           <motion.a
-            href="https://cloud.cerebras.ai?referral_code=vt9xnkkd"
+            href="https://cloud.cerebras.ai?referral_code=vt9xnkkd&utm_source=barbell-visualizer&utm_medium=growth&utm_campaign=isaac-growth"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-80"
