@@ -5,9 +5,10 @@ import { Weight } from '../../types/Weight';
 interface WeightStackProps {
   weights: Weight[];
   side: 'left' | 'right';
+  unit?: 'kg' | 'lbs';
 }
 
-export function WeightStack({ weights, side }: WeightStackProps) {
+export function WeightStack({ weights, side, unit }: WeightStackProps) {
   const stackedWeights = useMemo(() => {
     let currentPosition = 0;
     const direction = side === 'left' ? -1 : 1;
@@ -16,7 +17,7 @@ export function WeightStack({ weights, side }: WeightStackProps) {
 
     return weights
       .filter((_, i) => (side === 'left' ? i % 2 === 0 : i % 2 === 1))
-      .map((weight, index) => {
+      .map((weight) => {
         const position: [number, number, number] = [
           startX + direction * currentPosition,
           0,
@@ -35,6 +36,7 @@ export function WeightStack({ weights, side }: WeightStackProps) {
           key={`${side}-${index}`}
           weight={weight.weight}
           position={weight.position}
+          unit={unit}
         />
       ))}
     </>

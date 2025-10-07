@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Scale, Dumbbell } from "lucide-react";
+import { motion } from "motion/react";
+import cerebrasCode from "./cerebras-blackw.png";
 
 interface WeightInputProps {
   weight: number;
@@ -39,7 +40,7 @@ export function WeightInput({
   };
 
   return (
-    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white p-6 shadow-[12px_12px_0px_0px_black] z-10 border-2 border-black">
+    <div className="absolute top-10 left-1/2 -translate-x-1/2 bg-white p-6 shadow-[12px_12px_0px_0px_black] z-10 border-2 border-black">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
           {/* <Dumbbell className="w-6 h-6 text-blue-600" /> */}
@@ -80,6 +81,34 @@ export function WeightInput({
               LBS
             </button>
           </div>
+        </div>
+        <div className="flex gap-1 items-baseline justify-end transition-opacity">
+          <p className="text-sm text-gray-500 items-end flex justify-end">
+            built with{" "}
+          </p>
+          <motion.a
+            href="https://cloud.cerebras.ai?referral_code=vt9xnkkd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80"
+            animate={{ y: 0, rotate: 0 }}
+            whileHover={{
+              y: [-5, -3, -5, -7, -5],
+              rotate: [0, -3, 0, 3, 0],
+              transition: {
+                duration: 0.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+                repeatDelay: 0.1,
+              },
+            }}
+          >
+            <img
+              className="inline-block h-[1.2lh]"
+              src={cerebrasCode}
+              alt="Cerebras Code"
+            />
+          </motion.a>
         </div>
       </div>
     </div>

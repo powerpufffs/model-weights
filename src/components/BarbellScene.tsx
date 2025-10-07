@@ -5,16 +5,17 @@ import { Weight } from "../types/Weight";
 
 interface BarbellSceneProps {
   weights: Weight[];
+  unit?: 'kg' | 'lbs';
 }
 
-export function BarbellScene({ weights }: BarbellSceneProps) {
+export function BarbellScene({ weights, unit = 'lbs' }: BarbellSceneProps) {
   return (
     <Canvas className="w-full h-full bg-slate-400">
       <PerspectiveCamera makeDefault position={[0, 1, 3]} fov={50} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={2} />
       <directionalLight position={[-5, -5, -5]} intensity={0.3} />
-      <Barbell weights={weights} />
+      <Barbell weights={weights} unit={unit} />
       <OrbitControls
         enableZoom={true}
         enablePan={true}

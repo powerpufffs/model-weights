@@ -6,6 +6,7 @@ import { Text } from '@react-three/drei';
 interface PlateProps {
   weight: number;
   position: [number, number, number];
+  unit?: 'kg' | 'lbs';
 }
 
 const PLATE_SPECS = {
@@ -18,9 +19,23 @@ const PLATE_SPECS = {
   1: { radius: 0.09, thickness: 0.01, color: '#EDF2F7' },
 } as const;
 
-export function Plate({ weight, position }: PlateProps) {
+// Conversion factors for displaying kg values
+const KG_WEIGHTS: Record<number, number> = {
+  45: 20,
+  35: 15,
+  25: 10,
+  10: 5,
+  5: 2.5,
+  2.5: 1,
+  1: 0.5,
+};
+
+export function Plate({ weight, position, unit = 'lbs' }: PlateProps) {
   const meshRef = useRef<Mesh>(null);
   const spec = PLATE_SPECS[weight as keyof typeof PLATE_SPECS];
+  
+  // Display weight in the appropriate unit
+  const displayWeight = unit === 'kg' ? KG_WEIGHTS[weight] : weight;
 
   if (!spec) return null;
 
@@ -32,12 +47,11 @@ export function Plate({ weight, position }: PlateProps) {
         radius={spec.radius}
         thickness={spec.thickness}
         color={spec.color}
-        label={`${weight}`}
+        label={`${displayWeight}`}
       />
 
       {/* Render the weight label */}
       <Text
-        // position={[0, 0, spec.thickness / 2 + ]} // Offset slightly outward
         position={[0, 0, spec.radius]} // Offset slightly outward
         fontSize={spec.radius * 0.15} // Adjust font size relative to the plate
         color="black"
@@ -49,7 +63,7 @@ export function Plate({ weight, position }: PlateProps) {
         outlineOpacity={1}
         rotation={[0, 0, 0]} // Ensure correct orientation
       >
-        {`${weight}`}
+        {`${displayWeight}`}
       </Text>
     </group>
   );

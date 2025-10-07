@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BarbellScene } from './components/BarbellScene';
 import { WeightInput } from './components/WeightInput';
 import { calculatePlates } from './utils/weightCalculator';
@@ -22,7 +22,7 @@ function App() {
         onWeightChange={setWeight}
         onUnitChange={setUnit}
       />
-      <BarbellScene weights={plates} />
+      <BarbellScene weights={plates} unit={unit} />
     </div>
   );
 }

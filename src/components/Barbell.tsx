@@ -7,9 +7,10 @@ import { Weight } from '../types/Weight';
 
 interface BarbellProps {
   weights: Weight[];
+  unit?: 'kg' | 'lbs';
 }
 
-export function Barbell({ weights }: BarbellProps) {
+export function Barbell({ weights, unit = 'lbs' }: BarbellProps) {
   const groupRef = useRef<Group>(null);
 
   useFrame((state) => {
@@ -21,8 +22,8 @@ export function Barbell({ weights }: BarbellProps) {
   return (
     <group ref={groupRef}>
       <Bar />
-      <WeightStack weights={weights} side="left" />
-      <WeightStack weights={weights} side="right" />
+      <WeightStack weights={weights} side="left" unit={unit} />
+      <WeightStack weights={weights} side="right" unit={unit} />
     </group>
   );
 }
